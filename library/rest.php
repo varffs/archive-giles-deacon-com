@@ -5,7 +5,7 @@
 function giles_archive_complete() {
   $posts = get_posts();
  
-  if ( empty( $posts ) ) {
+  if (empty($posts)) {
     return null;
   }
   
@@ -39,9 +39,9 @@ function giles_archive_complete() {
   return $data;
 }
   
-add_action( 'rest_api_init', function () {
+add_action('rest_api_init', function() {
   register_rest_route( 'giles/v1', '/data', array(
     'methods' => 'GET',
     'callback' => 'giles_archive_complete',
-  ) );
-} );
+  ));
+});
