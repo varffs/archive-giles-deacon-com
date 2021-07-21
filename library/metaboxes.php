@@ -22,10 +22,10 @@ function igv_cmb_metaboxes() {
 
   $meta_boxes->add_field( array(
     'name'             => 'Year',
-  	'desc'             => 'Select a year',
+  	'desc'             => 'Select a year. If none is selected the this will show in the top section',
   	'id'               => $prefix . 'year',
   	'type'             => 'select',
-  	'show_option_none' => false,
+  	'show_option_none' => true,
   	'default'          => 'custom',
   	'options'          => $years_options
   ) );

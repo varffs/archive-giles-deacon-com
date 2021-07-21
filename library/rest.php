@@ -13,13 +13,11 @@ function giles_archive_complete() {
   
   foreach ($posts as $index => $post) {    
     $gallery_raw = get_post_meta($post->ID, '_cmb_gallery');
-    $type = get_post_meta($post->ID, '_cmb_type');
-    $year = get_post_meta($post->ID, '_cmb_year');
-    
-    if (empty($year)) {
-      return;
-    }
-    
+    $type = get_post_meta($post->ID, '_cmb_type', true);
+    $year = get_post_meta($post->ID, '_cmb_year', true);
+
+    $data_index = empty($year) ? 9999 : intval($year);
+        
     $gallery = [];
     
     foreach ($gallery_raw[0] as $id => $image) {  
@@ -31,9 +29,9 @@ function giles_archive_complete() {
       ];
     }
     
-    $data[intval($year[0])][] = (object) [
+    $data[$data_index][] = (object) [
       'title' => $post->post_title,
-      'type' => count($type) > 0 ? $type[0] : null,
+      'type' => !empty($type) ? $type : null,
       'gallery' => $gallery,
     ];
   }
