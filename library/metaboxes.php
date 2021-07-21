@@ -4,6 +4,12 @@ add_action( 'cmb2_init', 'igv_cmb_metaboxes' );
 function igv_cmb_metaboxes() {
   $prefix = '_cmb_';
 
+  $years_options = [];
+  
+  for ($i = 2003; $i <= date('Y'); $i++) {
+    $years_options[$i] = $i;
+  }
+
   $meta_boxes = new_cmb2_box( array (
     'id'         => 'post_metabox',
     'title'      => __( 'Collection Meta', 'cmb' ),
@@ -14,6 +20,16 @@ function igv_cmb_metaboxes() {
     'show_in_rest' => WP_REST_Server::READABLE,
   ) );
 
+  $meta_boxes->add_field( array(
+    'name'             => 'Year',
+  	'desc'             => 'Select a year',
+  	'id'               => $prefix . 'year',
+  	'type'             => 'select',
+  	'show_option_none' => false,
+  	'default'          => 'custom',
+  	'options'          => $years_options
+  ) );
+  
   $meta_boxes->add_field( array(
     'name'             => 'Collection Type',
   	'desc'             => 'Select a type. If none is selected the type will show from the name of the post',

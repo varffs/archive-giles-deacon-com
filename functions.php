@@ -1,6 +1,6 @@
 <?php
 get_template_part( 'library/metaboxes' );
-get_template_part( 'library/taxonomies' );
+get_template_part( 'library/rest' );
 
 function cmb_initialize_cmb_meta_boxes() {
   if (!class_exists( 'cmb2_bootstrap_202' ) ) {
