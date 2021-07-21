@@ -5,28 +5,22 @@
     if( have_posts() ) {
       while( have_posts() ) {
         the_post();
-        
-        $years = get_the_terms($post, 'year');
-        
-        $year = false;
-        
-        if (count($years) > 0) {
-          $year = $years[0];
-        }        
-        $type = get_post_meta($post->ID, '_cmb_type');
+      
+        $type = get_post_meta($post->ID, '_cmb_type', true);
+        $year = get_post_meta($post->ID, '_cmb_year', true);
         $gallery = get_post_meta($post->ID, '_cmb_gallery');
   ?>
   <div>
     <h4>
       <?php 
-        if (!empty($type[0])) {
-          echo $type[0];
+        if (!empty($type)) {
+          echo $type;
         } else {
           the_title();
         }
         
-        if ($year) {
-          echo ' ' . $year->name;
+        if (!empty($year)) {
+          echo ' ' . $year;
         }
       ?>
     </h4>
