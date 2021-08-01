@@ -3,7 +3,7 @@
  *
  */
 function giles_archive_complete() {
-  $posts = get_posts();
+  $posts = get_posts(array('posts_per_page' => -1));
  
   if (empty($posts)) {
     return null;
@@ -40,7 +40,7 @@ function giles_archive_complete() {
 }
   
 add_action('rest_api_init', function() {
-  register_rest_route( 'giles/v1', '/data', array(
+  register_rest_route('giles/v1', '/data', array(
     'methods' => 'GET',
     'callback' => 'giles_archive_complete',
   ));
