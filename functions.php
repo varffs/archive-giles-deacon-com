@@ -1,4 +1,5 @@
 <?php
+get_template_part( 'library/images' );
 get_template_part( 'library/metaboxes' );
 get_template_part( 'library/rest' );
 
