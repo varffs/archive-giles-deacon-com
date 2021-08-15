@@ -24,7 +24,7 @@ function giles_archive_complete() {
       $attachment = get_post($id);
           
       $gallery[] = (object) [
-        'html' => wp_get_attachment_image($id, 'x500'),
+        'html' => wp_get_attachment_image($id, 'x500', false, array('loading' => false)),
         'caption' => !empty($attachment->post_excerpt) ? $attachment->post_excerpt : $attachment->post_title
       ];
     }
